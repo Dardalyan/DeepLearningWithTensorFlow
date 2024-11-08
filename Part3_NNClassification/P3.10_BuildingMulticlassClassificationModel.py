@@ -1,9 +1,9 @@
 import random
-
-import keras
+import tensorflow as tf
 import numpy as np
-from keras._tf_keras.keras.datasets import fashion_mnist
 from matplotlib import pyplot as plt
+
+
 
 # The data has already been sorted into training and test sets for us
 (train_data,train_labels),(test_data,test_labels) = fashion_mnist.load_data()
@@ -25,20 +25,23 @@ plt.show()
 """
 
 
+for device in tf.config.list_physical_devices():
+    print(device)
+
 # Create the Model
-model = keras.Sequential([
-    keras.layers.Flatten(input_shape=(28,28)), # shape 28*28 = (None,784) ndim :)
-    keras.layers.Dense(units=100,activation=keras.activations.relu),
-    keras.layers.Dense(units=100,activation=keras.activations.relu),
-    keras.layers.Dense(units=100,activation=keras.activations.relu),
-    keras.layers.Dense(units=1,activation=keras.activations.softmax), # for multi-class
+model = tf.keras.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28,28)), # shape 28*28 = (None,784) ndim :)
+    tf.keras.layers.Dense(units=100,activation=tf.keras.activations.relu),
+    tf.keras.layers.Dense(units=100,activation=tf.keras.activations.relu),
+    tf.keras.layers.Dense(units=100,activation=tf.keras.activations.relu),
+    tf.keras.layers.Dense(units=1,activation=tf.keras.activations.softmax), # for multi-class
 ])
 
 
 # Compile the  Model
-model.compile(loss=keras.losses.CategoricalCrossentropy(),
-              metrics=[keras.metrics.Accuracy()],
-              optimizer=keras.optimizers.Adam(learning_rate=0.001))
+model.compile(loss=tf.keras.losses.CategoricalCrossentropy(),
+              metrics=[tf.keras.metrics.Accuracy()],
+              optimizer=tf.keras.optimizers.Adam(learning_rate=0.001))
 
 
 #non_nor_history = model.fit(train_data,train_labels,epochs=50,validation_data=(test_data,test_labels))

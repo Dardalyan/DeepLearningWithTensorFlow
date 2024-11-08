@@ -1,5 +1,4 @@
 import numpy as np
-import tensorflow as tf
 from keras._tf_keras.keras.datasets import fashion_mnist
 import matplotlib.pyplot as plt
 import random
