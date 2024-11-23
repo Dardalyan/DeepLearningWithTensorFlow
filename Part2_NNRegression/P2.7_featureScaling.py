@@ -1,3 +1,4 @@
+import keras
 import pandas as pd
 from tensorflow.keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
@@ -75,7 +76,7 @@ model = tf.keras.Sequential([
 model.compile(
     loss = tf.keras.losses.mae,
     optimizer = Adam(learning_rate=0.1),
-    metrics = ['mae']
+    metrics = [keras.metrics.MeanAbsoluteError()]
 )
 
 model.fit(X_Train_Normal, y_train,epochs=200)

@@ -1,7 +1,6 @@
 import keras
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 import tensorflow as tf
 from sklearn.datasets import make_circles
 from sklearn.metrics import confusion_matrix
